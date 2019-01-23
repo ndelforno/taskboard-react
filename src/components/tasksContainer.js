@@ -60,6 +60,9 @@ class TasksContainer extends Component {
       <div>
         <button className="newTaskButton" onClick={this.addNewTask}>
           New Task
+          <span className="notification">
+            {this.state.notification}
+          </span>
         </button>
         {this.state.tasks.map((task) => {
           if(this.state.editingTaskId === task.id) {
