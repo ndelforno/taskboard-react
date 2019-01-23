@@ -8,7 +8,8 @@ class TasksContainer extends Component {
   constructor(props) {
   super(props);
     this.state = {
-      tasks: []
+      tasks: [],
+      editingTaskId: null
     };
   };
 
@@ -36,7 +37,10 @@ class TasksContainer extends Component {
       const tasks = update(this.state.tasks, {
         $splice: [[0,0, response.data]]
       })
-      this.setState({tasks: tasks})
+      this.setState({
+        tasks: tasks,
+        editingTaskId: response.data.id
+      })
     })
     .catch(error => console.log(error))
   }
