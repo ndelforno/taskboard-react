@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import Task from './task'
+import update from 'immutability-helper'
 
 class TasksContainer extends Component {
 
@@ -32,6 +33,10 @@ class TasksContainer extends Component {
     )
     .then(response => {
       console.log(response)
+      const tasks = update(this.state.tasks, {
+        $splice: [[0,0, response.data]]
+      })
+      this.setState({tasks: tasks})
     })
     .catch(error => console.log(error))
   }
