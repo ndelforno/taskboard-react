@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import Task from './task'
 import update from 'immutability-helper'
+import TaskForm from './taskForm'
 
 class TasksContainer extends Component {
 
@@ -52,9 +53,11 @@ class TasksContainer extends Component {
           New Task
         </button>
         {this.state.tasks.map((task) => {
-          return(
-            <Task task={task} key={task.id}/>
-          )
+          if(this.state.editingTaskId === task.id) {
+            return(<TaskForm task={task} key={task.id} />)
+          } else {
+            return (<Task task={task} key={task.id} />)
+          }
         })}
       </div>
     );
