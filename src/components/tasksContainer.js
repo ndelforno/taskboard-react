@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import Task from './task'
 
 class TasksContainer extends Component {
 
@@ -24,10 +25,7 @@ class TasksContainer extends Component {
       <div>
         {this.state.tasks.map((task) => {
           return(
-            <div className="tile" key={task.id} >
-              <h4>{task.title}</h4>
-              <p>{task.body}</p>
-            </div>
+            <Task task={task} key={task.id}/>
           )
         })}
       </div>
