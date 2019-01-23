@@ -14,7 +14,7 @@ class TasksContainer extends Component {
     axios.get('http://localhost:3001/api/v1/tasks.json')
     .then(response => {
       console.log(response)
-      this.setState({ideas: response.data})
+      this.setState({tasks: response.data})
     })
     .catch(error => console.log(error))
   }
@@ -22,9 +22,16 @@ class TasksContainer extends Component {
   render() {
     return (
       <div>
-        Tasks
+        {this.state.tasks.map((task) => {
+          return(
+            <div className="tile" key={task.id} >
+              <h4>{task.title}</h4>
+              <p>{task.body}</p>
+            </div>
+          )
+        })}
       </div>
-    )
+    );
   }
 
 }
