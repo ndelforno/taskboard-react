@@ -68,6 +68,16 @@ class TasksContainer extends Component {
 
   }
 
+  deleteTask = (id) => {
+    axios.delete(`http://localhost:3001/api/v1/tasks/${id}`)
+    .then(response => {
+      const taskIndex = this.state.tasks.findIndex(x => x.id === id)
+      const tasks = update(this.state.tasks, { $splice: [[taskIndex, 1]]})
+      this.setState({tasks: tasks})
+    })
+    .catch(error => console.log(error))
+  }
+
   render() {
     return (
       <div>
