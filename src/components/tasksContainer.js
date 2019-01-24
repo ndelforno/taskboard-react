@@ -10,7 +10,8 @@ class TasksContainer extends Component {
   super(props);
     this.state = {
       tasks: [],
-      editingTaskId: null
+      editingTaskId: null,
+      notification: ''
     };
   };
 
@@ -51,19 +52,24 @@ class TasksContainer extends Component {
     const tasks = update(this.state.tasks, {
       [taskIndex]: { $set: task }
     })
-    this.setState({tasks: tasks})
+    this.setState({
+      tasks: tasks,
+      notification:'All changes saved'
+    })
   }
 
 
   render() {
     return (
       <div>
-        <button className="newTaskButton" onClick={this.addNewTask}>
-          New Task
+        <div>
+          <button className="newTaskButton" onClick={this.addNewTask}>
+            New Task
+          </button>
           <span className="notification">
             {this.state.notification}
           </span>
-        </button>
+        </div>
         {this.state.tasks.map((task) => {
           if(this.state.editingTaskId === task.id) {
             return(<TaskForm task={task} key={task.id} updateTask={this.updateTask} />)
