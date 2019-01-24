@@ -1,9 +1,24 @@
-import React from 'react'
+import React, { Component } from 'react'
 
-const Task = ({task}) =>
-  <div className="tile" key={task.id}>
-    <h4>{task.title}</h4>
-    <p>{task.body}</p>
-  </div>
+
+class Task extends Component {
+
+  handleClick = () => {
+    this.props.onClick(this.props.task.id)
+  }
+
+  render () {
+    return(
+      <div className="tile" >
+        <h4 onClick={this.handleClick}>
+          {this.props.task.title}
+        </h4>
+        <p onClick={this.handleClick}>
+          {this.props.task.body}
+        </p>
+      </div>
+    )
+  }
+}
 
 export default Task

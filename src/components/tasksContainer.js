@@ -62,6 +62,10 @@ class TasksContainer extends Component {
     this.setState({notification: ''})
   }
 
+  enableEditing = (id) => {
+    this.setState({editingTaskId: id})
+  }
+
   render() {
     return (
       <div>
@@ -77,7 +81,7 @@ class TasksContainer extends Component {
           if(this.state.editingTaskId === task.id) {
             return(<TaskForm task={task} key={task.id} updateTask={this.updateTask} resetNotification={this.resetNotification} />)
           } else {
-            return (<Task task={task} key={task.id} />)
+            return (<Task task={task} key={task.id} onClick={this.enableEditing} />)
           }
         })}
       </div>
