@@ -87,7 +87,11 @@ class TasksContainer extends Component {
                titleRef= {input => this.title = input}
                resetNotification={this.resetNotification} />)
           } else {
-            return (<Task task={task} key={task.id} onClick={this.enableEditing} />)
+            return (
+              <Task task={task} key={task.id}
+              onClick={this.enableEditing}
+              onDelete={this.deleteTask} />
+            )
           }
         })}
       </div>
