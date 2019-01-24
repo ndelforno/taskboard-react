@@ -58,6 +58,9 @@ class TasksContainer extends Component {
     })
   }
 
+  resetNotification = () => {
+    this.setState({notification: ''})
+  }
 
   render() {
     return (
@@ -72,7 +75,7 @@ class TasksContainer extends Component {
         </div>
         {this.state.tasks.map((task) => {
           if(this.state.editingTaskId === task.id) {
-            return(<TaskForm task={task} key={task.id} updateTask={this.updateTask} />)
+            return(<TaskForm task={task} key={task.id} updateTask={this.updateTask} resetNotification={this.resetNotification} />)
           } else {
             return (<Task task={task} key={task.id} />)
           }
